@@ -11,22 +11,21 @@ permalink: /reports/daily/
             <p class="text-center text-muted mb-5">每日更新的外设市场动态、产品发布和行业新闻</p>
             
             <div class="row g-4">
-                {% assign daily_reports = site.posts | where_exp: "post", "post.tags contains '日报'" %}
-                {% for post in daily_reports reversed %}
+                {% assign daily_reports = site.posts | where: "categories", "daily" | reverse %}
+                {% for post in daily_reports %}
                 <div class="col-md-6 col-lg-4">
-                    <div class="card report-card h-100">
+                    <div class="report-card h-100">
                         <div class="card-body">
                             <span class="category-badge mb-2">日报</span>
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
                             <p class="card-text">{{ post.excerpt | truncate: 100 }}</p>
-                            <a href="{{ post.url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
                 
-                {% comment %} 如果没有日报，显示占位内容 {% endcomment %}
                 {% unless daily_reports.size > 0 %}
                 <div class="col-12 text-center">
                     <div class="py-5">

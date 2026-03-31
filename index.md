@@ -3,6 +3,8 @@ layout: default
 title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌动向与渠道趋势
 ---
 
+{% include data-loader.html %}
+
 <!-- Hero Section -->
 <div class="hero-section">
     <div class="container">
@@ -26,7 +28,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div>
-                            <div class="metric-value">127</div>
+                            <div class="metric-value">{{ overview_data.metrics.dailyDynamics }}</div>
                             <div class="metric-label">今日新增动态</div>
                         </div>
                     </div>
@@ -35,7 +37,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                             <i class="fas fa-tag"></i>
                         </div>
                         <div>
-                            <div class="metric-value">8</div>
+                            <div class="metric-value">{{ overview_data.metrics.newProducts }}</div>
                             <div class="metric-label">新品数量</div>
                         </div>
                     </div>
@@ -44,7 +46,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div>
-                            <div class="metric-value">23</div>
+                            <div class="metric-value">{{ overview_data.metrics.priceFluctuations }}</div>
                             <div class="metric-label">价格异动</div>
                         </div>
                     </div>
@@ -53,12 +55,12 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                             <i class="fas fa-fire"></i>
                         </div>
                         <div>
-                            <div class="metric-value">Keychron</div>
+                            <div class="metric-value">{{ overview_data.metrics.hotBrand }}</div>
                             <div class="metric-label">热门品牌</div>
                         </div>
                     </div>
                     <div class="trend-chart">
-                        <small>📈 过去7天热度趋势<br><em>数据更新: 2026-03-31 09:00 | 来源: 多平台监测</em></small>
+                        <small>{{ overview_data.trendChart.title }}<br><em>数据更新: {{ overview_data.lastUpdated | date: "%Y-%m-%d %H:%M" }} | 来源: {{ overview_data.dataSource }}</em></small>
                     </div>
                 </div>
             </div>
@@ -74,76 +76,50 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
             <p>专业KPI指标，实时监控市场动态</p>
         </div>
         <div class="row g-6">
+            {% for kpi in kpis_data.kpis %}
             <div class="col-md-6 col-lg-3">
                 <div class="kpi-card">
                     <div class="kpi-icon">
+                        {% if kpi.id == "keyboard-price" %}
                         <i class="fas fa-keyboard"></i>
-                    </div>
-                    <div class="kpi-value">¥586</div>
-                    <div class="kpi-label">机械键盘均价</div>
-                    <span class="kpi-badge">
-                        <i class="fas fa-arrow-up"></i> 较昨日 +2.1%
-                    </span>
-                    <div class="mini-trend">
-                        <div class="mini-trend-bar"></div>
-                    </div>
-                    <div class="kpi-source">
-                        <small>时间范围: 24小时 | 来源: 电商平台</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="kpi-card">
-                    <div class="kpi-icon">
+                        {% elsif kpi.id == "wireless-mouse" %}
                         <i class="fas fa-mouse"></i>
-                    </div>
-                    <div class="kpi-value">63%</div>
-                    <div class="kpi-label">无线鼠标占比</div>
-                    <span class="kpi-badge info" style="background: rgba(6, 182, 212, 0.32); color: #06b6d4; border-color: rgba(6, 182, 212, 0.4);">
-                        <i class="fas fa-chart-line"></i> 近30天新高
-                    </span>
-                    <div class="mini-trend">
-                        <div class="mini-trend-bar"></div>
-                    </div>
-                    <div class="kpi-source">
-                        <small>时间范围: 30天 | 来源: 销售数据</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="kpi-card">
-                    <div class="kpi-icon">
+                        {% elsif kpi.id == "high-refresh-display" %}
                         <i class="fas fa-tv"></i>
-                    </div>
-                    <div class="kpi-value">240Hz</div>
-                    <div class="kpi-label">高刷电竞显示器</div>
-                    <div style="display: flex; justify-content: center; gap: 1.3rem; margin-top: 1.8rem; flex-wrap: wrap;">
-                        <span style="padding: 0.5rem 1.2rem; border-radius: 22px; font-size: 1.05rem; background: rgba(99, 102, 241, 0.32); color: var(--primary); font-weight: 900; border: 1px solid rgba(99, 102, 241, 0.4);">高刷</span>
-                        <span style="padding: 0.5rem 1.2rem; border-radius: 22px; font-size: 1.05rem; background: rgba(99, 102, 241, 0.32); color: var(--primary); font-weight: 900; border: 1px solid rgba(99, 102, 241, 0.4);">低延迟</span>
-                    </div>
-                    <div class="kpi-source">
-                        <small>时间范围: 本周 | 来源: 新品发布</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="kpi-card">
-                    <div class="kpi-icon">
+                        {% elsif kpi.id == "market-growth" %}
                         <i class="fas fa-chart-bar"></i>
+                        {% endif %}
                     </div>
-                    <div class="kpi-value">15.3%</div>
-                    <div class="kpi-label">市场增长率</div>
-                    <span class="kpi-badge warning" style="background: rgba(245, 158, 11, 0.32); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">
-                        <i class="fas fa-arrow-up"></i> 季度趋势向上
+                    <div class="kpi-value">{{ kpi.value }}</div>
+                    <div class="kpi-label">{{ kpi.title }}</div>
+                    {% if kpi.trendType == "up" %}
+                    <span class="kpi-badge">
+                        <i class="fas fa-arrow-up"></i> {{ kpi.trend }}
                     </span>
+                    {% elsif kpi.trendType == "record" %}
+                    <span class="kpi-badge info" style="background: rgba(6, 182, 212, 0.32); color: #06b6d4; border-color: rgba(6, 182, 212, 0.4);">
+                        <i class="fas fa-chart-line"></i> {{ kpi.trend }}
+                    </span>
+                    {% elsif kpi.trendType == "down" %}
+                    <span class="kpi-badge warning" style="background: rgba(245, 158, 11, 0.32); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">
+                        <i class="fas fa-arrow-down"></i> {{ kpi.trend }}
+                    </span>
+                    {% else %}
+                    <span class="kpi-badge">
+                        {{ kpi.trend }}
+                    </span>
+                    {% endif %}
+                    {% if kpi.miniTrend %}
                     <div class="mini-trend">
                         <div class="mini-trend-bar"></div>
                     </div>
+                    {% endif %}
                     <div class="kpi-source">
-                        <small>时间范围: Q1 2026 | 来源: 行业报告</small>
+                        <small>时间范围: {{ kpi.timeRange }} | 来源: {{ kpi.dataSource }}</small>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -175,7 +151,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
             <!-- Daily Tab -->
             <div class="tab-pane fade show active" id="daily" role="tabpanel">
                 <div class="row g-6">
-                    {% assign daily_reports = site.posts | where_exp: "post", "post.tags contains '日报'" | reverse %}
+                    {% assign daily_reports = site.posts | where: "categories", "daily" | reverse %}
                     {% for post in daily_reports limit:3 %}
                     <div class="col-md-6 col-lg-4">
                         <div class="report-card">
@@ -186,8 +162,10 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                             <h4 class="report-title">{{ post.title | replace: "2026年", "" | replace: "外设行业日报", "" }}</h4>
                             <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
                             <div class="report-meta">
-                                <span class="brand-tag">Keychron</span>
-                                <span class="importance-badge" style="background: rgba(245, 158, 11, 0.25); color: #f59e0b; border-color: rgba(245, 158, 11, 0.35);">重要性: 高</span>
+                                {% for brand in post.brands limit:1 %}
+                                <span class="brand-tag">{{ brand }}</span>
+                                {% endfor %}
+                                <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
                             <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
@@ -198,37 +176,79 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
             
             <!-- Weekly Tab -->
             <div class="tab-pane fade" id="weekly" role="tabpanel">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4 style="margin-bottom: 1.6rem; color: var(--text-primary); font-weight: 900;">一周趋势分析</h4>
-                        <p class="text-muted mb-4" style="color: var(--text-secondary); font-size: 1.25rem;">重点品牌表现与市场趋势</p>
-                        <div style="list-style: none; padding-left: 0;">
-                            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); line-height: 1.65;">
-                                <span style="color: var(--primary); margin-right: 0.9rem; font-weight: 900;">•</span> Keychron (+12%) - 新品Q5 Pro发布带动增长
+                <div class="row g-6">
+                    {% assign weekly_reports = site.posts | where: "categories", "weekly" | reverse %}
+                    {% for post in weekly_reports limit:3 %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="report-card">
+                            <div class="report-header">
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #f72585);">周报</span>
+                                <span class="report-date">{{ post.date | date: "%m/%d" }}</span>
                             </div>
-                            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); line-height: 1.65;">
-                                <span style="color: var(--primary); margin-right: 0.9rem; font-weight: 900;">•</span> VGN (+8%) - 国产电竞鼠标持续热销
+                            <h4 class="report-title">{{ post.title | replace: "2026年", "" | replace: "外设市场周报", "" }}</h4>
+                            <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                            <div class="report-meta">
+                                {% for brand in post.brands limit:1 %}
+                                <span class="brand-tag" style="background: rgba(247, 37, 133, 0.32); color: #f72585; border-color: rgba(247, 37, 133, 0.4);">{{ brand }}</span>
+                                {% endfor %}
+                                <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
-                            <div style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); line-height: 1.65;">
-                                <span style="color: var(--primary); margin-right: 0.9rem; font-weight: 900;">•</span> Ducky (+5%) - 客制化键盘需求稳定
-                            </div>
-                            <div style="padding: 1rem 0; color: var(--text-secondary); line-height: 1.65;">
-                                <span style="color: var(--danger); margin-right: 0.9rem; font-weight: 900;">•</span> Cherry (-3.2%) - 股价受供应链影响下跌
-                            </div>
+                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <h4 style="margin-bottom: 1.6rem; color: var(--text-primary); font-weight: 900;">热门关键词</h4>
-                        <p class="text-muted mb-4" style="color: var(--text-secondary); font-size: 1.25rem;">本周市场关注焦点</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 1.3rem; margin-bottom: 2.5rem;">
-                            <span style="padding: 0.5rem 1.2rem; border-radius: 22px; font-size: 1.05rem; background: rgba(99, 102, 241, 0.32); color: var(--primary); font-weight: 900; border: 1px solid rgba(99, 102, 241, 0.4);">无线化</span>
-                            <span style="padding: 0.5rem 1.2rem; border-radius: 22px; font-size: 1.05rem; background: rgba(99, 102, 241, 0.32); color: var(--primary); font-weight: 900; border: 1px solid rgba(99, 102, 241, 0.4);">客制化</span>
-                            <span style="padding: 0.5rem 1.2rem; border-radius: 22px; font-size: 1.05rem; background: rgba(99, 102, 241, 0.32); color: var(--primary); font-weight: 900; border: 1px solid rgba(99, 102, 241, 0.4);">Mini-LED</span>
-                        </div>
-                        <div class="trend-chart" style="margin-top: 0; padding: 1.4rem;">
-                            <small>📊 品牌热度趋势图<br><em>数据周期: 2026-03-24 至 2026-03-31</em></small>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Monthly Tab -->
+            <div class="tab-pane fade" id="monthly" role="tabpanel">
+                <div class="row g-6">
+                    {% assign monthly_reports = site.posts | where: "categories", "monthly" | reverse %}
+                    {% for post in monthly_reports limit:3 %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="report-card">
+                            <div class="report-header">
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #7209b7);">月报</span>
+                                <span class="report-date">{{ post.date | date: "%m/%d" }}</span>
+                            </div>
+                            <h4 class="report-title">{{ post.title | replace: "2026年", "" | replace: "外设市场月报", "" }}</h4>
+                            <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                            <div class="report-meta">
+                                {% for brand in post.brands limit:1 %}
+                                <span class="brand-tag" style="background: rgba(114, 9, 183, 0.32); color: #7209b7; border-color: rgba(114, 9, 183, 0.4);">{{ brand }}</span>
+                                {% endfor %}
+                                <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
+                            </div>
+                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Summary Tab -->
+            <div class="tab-pane fade" id="summary" role="tabpanel">
+                <div class="row g-6">
+                    {% assign summary_reports = site.posts | where: "categories", "summary" | reverse %}
+                    {% for post in summary_reports limit:3 %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="report-card">
+                            <div class="report-header">
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #06d6a0);">总结</span>
+                                <span class="report-date">{{ post.date | date: "%m/%d" }}</span>
+                            </div>
+                            <h4 class="report-title">{{ post.title }}</h4>
+                            <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                            <div class="report-meta">
+                                {% for brand in post.brands limit:1 %}
+                                <span class="brand-tag" style="background: rgba(6, 214, 160, 0.32); color: #06d6a0; border-color: rgba(6, 214, 160, 0.4);">{{ brand }}</span>
+                                {% endfor %}
+                                <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
+                            </div>
+                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

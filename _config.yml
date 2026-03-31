@@ -17,7 +17,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
-# Permalink structure - 使用固定结构避免中文问题
+# Permalink structure
 permalink: /reports/:year/:month/:day/:title/
 
 # Pagination
@@ -33,6 +33,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - scripts/
 
 # Collections
 collections:
@@ -40,14 +41,18 @@ collections:
     output: true
     permalink: /reports/:path/
 
+# Directories
+source: .
+destination: _site
+
 # Categories for reports
 defaults:
   - scope:
-      path: ""
+      path: "content/reports"
       type: "posts"
     values:
       layout: post
-      author: 市场情报分析师
+      author: 外设市场情报分析师
   - scope:
       path: ""
       type: "reports"
@@ -74,7 +79,7 @@ seo:
   type: "WebSite"
   name: "鼠标与键盘市场情报平台"
   description: "每日追踪鼠标与键盘新品、价格、品牌动向与渠道趋势的市场情报平台"
-  author: "市场情报分析师"
+  author: "外设市场情报分析师"
   social:
     links:
       - "https://github.com/LHD-0218"

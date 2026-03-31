@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      update_data:
+        description: 'Update market data before deploy'
+        required: false
+        default: 'false'
+  
+  # 定时触发（每天9点）
+  schedule:
+    - cron: '0 1 * * *'  # UTC时间1点 = 北京时间9点
+
+  # 推送到main分支时触发
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm install
+        
+    - name: Update market data (if requested)
+      if: ${{ github.event.inputs.update_data == 'true' || github.event_name == 'schedule' }}
+      run: |
+        node scripts/generate-content.js
+        node scripts/snapshots.js
+        
+    - name: Build Jekyll site
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./
+        destination: ./_site
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages

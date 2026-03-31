@@ -1,0 +1,15 @@
+{
+  "lastUpdated": "2026-03-31T09:00:00+08:00",
+  "dataSource": "多平台监测",
+  "metrics": {
+    "dailyDynamics": 127,
+    "newProducts": 8,
+    "priceFluctuations": 23,
+    "hotBrand": "Keychron"
+  },
+  "trendChart": {
+    "title": "过去7天热度趋势",
+    "dataPeriod": "2026-03-25 至 2026-03-31",
+    "dataSource": "多平台监测"
+  }
+}

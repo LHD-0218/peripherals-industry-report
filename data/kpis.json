@@ -1,0 +1,44 @@
+{
+  "lastUpdated": "2026-03-31T09:00:00+08:00",
+  "kpis": [
+    {
+      "id": "keyboard-price",
+      "title": "机械键盘均价",
+      "value": "¥586",
+      "trend": "+2.1%",
+      "trendType": "up",
+      "timeRange": "24小时",
+      "dataSource": "电商平台",
+      "miniTrend": [580, 582, 584, 586]
+    },
+    {
+      "id": "wireless-mouse",
+      "title": "无线鼠标占比",
+      "value": "63%",
+      "trend": "近30天新高",
+      "trendType": "record",
+      "timeRange": "30天",
+      "dataSource": "销售数据",
+      "miniTrend": [58, 60, 61, 63]
+    },
+    {
+      "id": "high-refresh-display",
+      "title": "高刷电竞显示器",
+      "value": "240Hz",
+      "keywords": ["高刷", "低延迟"],
+      "timeRange": "本周",
+      "dataSource": "新品发布",
+      "miniTrend": null
+    },
+    {
+      "id": "market-growth",
+      "title": "市场增长率",
+      "value": "15.3%",
+      "trend": "季度趋势向上",
+      "trendType": "up",
+      "timeRange": "Q1 2026",
+      "dataSource": "行业报告",
+      "miniTrend": [12.1, 13.5, 14.2, 15.3]
+    }
+  ]
+}

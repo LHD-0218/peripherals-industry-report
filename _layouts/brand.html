@@ -1,0 +1,93 @@
+---
+layout: default
+---
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Breadcrumb Navigation -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}" style="color: var(--primary);">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/brands/" style="color: var(--primary);">品牌追踪</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                </ol>
+            </nav>
+
+            <!-- Brand Content -->
+            <article class="report-card" style="border-radius: 22px; margin-bottom: 2rem;">
+                <header class="mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="rank-number" style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-right: 1.5rem; font-size: 1.25rem;">{{ page.rank }}</span>
+                        <h1 style="font-size: 2.2rem; font-weight: 900; color: var(--text-primary); margin: 0;">{{ page.title }}</h1>
+                    </div>
+                    <div class="text-muted mb-3" style="color: var(--text-secondary);">
+                        <i class="fas fa-fire me-2"></i>热度指数: {{ page.heatIndex }}
+                        {% if page.trendType == "up" %}
+                        <span style="color: var(--success); font-weight: bold; margin-left: 0.5rem;">↑{{ page.trend }}</span>
+                        {% elsif page.trendType == "down" %}
+                        <span style="color: var(--danger); font-weight: bold; margin-left: 0.5rem;">↓{{ page.trend }}</span>
+                        {% endif %}
+                    </div>
+                </header>
+
+                <div class="post-content" style="line-height: 1.8; color: var(--text-secondary);">
+                    <h3>最新动态</h3>
+                    <p>{{ page.recentNews }}</p>
+                    
+                    <h3>相关产品</h3>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+                        {% for product in page.products %}
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">
+                            <span style="color: var(--primary); margin-right: 0.5rem;">•</span> {{ product }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    <h3>关键词</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem;">
+                        {% for keyword in page.keywords %}
+                        <span style="padding: 0.5rem 1rem; border-radius: 16px; font-size: 0.95rem; background: rgba(99, 102, 241, 0.25); color: var(--primary); font-weight: 700;">{{ keyword }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <h3>相关报告</h3>
+                    <div class="row g-4">
+                        {% assign brand_reports = site.posts | where_exp: "post", "post.brands contains page.title" | reverse %}
+                        {% for post in brand_reports limit:3 %}
+                        <div class="col-md-6">
+                            <div class="report-card">
+                                <div class="report-header">
+                                    {% if post.categories contains "daily" %}
+                                    <span class="report-type">日报</span>
+                                    {% elsif post.categories contains "weekly" %}
+                                    <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #f72585);">周报</span>
+                                    {% elsif post.categories contains "monthly" %}
+                                    <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #7209b7);">月报</span>
+                                    {% else %}
+                                    <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #06d6a0);">总结</span>
+                                    {% endif %}
+                                    <span class="report-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+                                </div>
+                                <h4 class="report-title">{{ post.title | truncate: 30 }}</h4>
+                                <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+                                <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="mt-4 pt-4 border-top" style="border-color: var(--border-color);">
+                    <a href="/brands/" class="read-more">
+                        <i class="fas fa-list me-2"></i>返回品牌列表
+                    </a>
+                    <a href="{{ '/' | relative_url }}" class="read-more ms-3">
+                        <i class="fas fa-home me-2"></i>返回首页
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

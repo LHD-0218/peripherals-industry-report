@@ -1,0 +1,70 @@
+{
+  "brands": [
+    {
+      "name": "Keychron",
+      "id": "keychron",
+      "officialUrl": "https://www.keychron.com",
+      "socialUrls": ["https://twitter.com/keychron", "https://www.reddit.com/r/Keychron/"],
+      "keywords": ["无线三模", "热插拔", "客制化", "QMK", "VIA"]
+    },
+    {
+      "name": "VGN",
+      "id": "vgn", 
+      "officialUrl": "https://vgn.hk",
+      "socialUrls": ["https://twitter.com/vgn_official", "https://www.reddit.com/r/MouseReview/"],
+      "keywords": ["轻量化", "PAW3395", "国产崛起", "8K回报率", "电竞鼠标"]
+    },
+    {
+      "name": "Ducky",
+      "id": "ducky",
+      "officialUrl": "https://www.duckychannel.com.tw",
+      "socialUrls": ["https://twitter.com/DuckyChannel", "https://www.reddit.com/r/MechanicalKeyboards/"],
+      "keywords": ["PBT键帽", "客制化", "RGB背光", "台湾制造"]
+    },
+    {
+      "name": "Cherry",
+      "id": "cherry",
+      "officialUrl": "https://cherry.de",
+      "socialUrls": ["https://twitter.com/CHERRYMX", "https://www.reddit.com/r/MechanicalKeyboards/"],
+      "keywords": ["MX轴", "德国制造", "经典设计", "机械键盘"]
+    },
+    {
+      "name": "Razer",
+      "id": "razer",
+      "officialUrl": "https://www.razer.com",
+      "socialUrls": ["https://twitter.com/Razer", "https://www.reddit.com/r/Razer/"],
+      "keywords": ["雷蛇绿", "光学开关", "电竞外设", "Chroma RGB"]
+    }
+  ],
+  "categories": [
+    {
+      "name": "键盘",
+      "keywords": ["机械键盘", "薄膜键盘", "静电容", "热插拔", "三模连接", "客制化"]
+    },
+    {
+      "name": "鼠标", 
+      "keywords": ["电竞鼠标", "轻量化", "PAW3395", "8K回报率", "无线三模", "人体工学"]
+    },
+    {
+      "name": "显示器",
+      "keywords": ["Mini-LED", "OLED", "高刷新率", "240Hz", "4K", "HDR1000"]
+    }
+  ],
+  "dataSources": [
+    {
+      "name": "电商平台",
+      "urls": ["https://www.jd.com", "https://www.tmall.com", "https://www.taobao.com"],
+      "updateFrequency": "daily"
+    },
+    {
+      "name": "社交媒体",
+      "urls": ["https://www.weibo.com", "https://www.xiaohongshu.com", "https://www.bilibili.com"],
+      "updateFrequency": "hourly"
+    },
+    {
+      "name": "行业媒体",
+      "urls": ["https://www.pcgamer.com", "https://www.tomshardware.com", "https://www.anandtech.com"],
+      "updateFrequency": "weekly"
+    }
+  ]
+}

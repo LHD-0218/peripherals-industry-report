@@ -1,0 +1,34 @@
+{
+  "lastUpdated": "2026-03-31T09:00:00+08:00",
+  "dataSource": "京东、天猫、淘宝",
+  "trends": [
+    {
+      "id": "keyboard-price-trend",
+      "title": "机械键盘价格趋势 (30天)",
+      "category": "键盘",
+      "data": [
+        {"date": "2026-03-01", "price": 570},
+        {"date": "2026-03-08", "price": 575},
+        {"date": "2026-03-15", "price": 580},
+        {"date": "2026-03-22", "price": 583},
+        {"date": "2026-03-31", "price": 586}
+      ],
+      "currentPrice": 586,
+      "change": "+2.1%"
+    },
+    {
+      "id": "mouse-wireless-trend",
+      "title": "无线鼠标占比趋势 (30天)",
+      "category": "鼠标", 
+      "data": [
+        {"date": "2026-03-01", "percentage": 58},
+        {"date": "2026-03-08", "percentage": 60},
+        {"date": "2026-03-15", "percentage": 61},
+        {"date": "2026-03-22", "percentage": 62},
+        {"date": "2026-03-31", "percentage": 63}
+      ],
+      "currentPercentage": 63,
+      "change": "+5%"
+    }
+  ]
+}
