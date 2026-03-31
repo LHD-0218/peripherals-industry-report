@@ -1,0 +1,50 @@
+# Jekyll Configuration
+title: 外设行业报告
+email: contact@peripherals-report.com
+description: >-
+  专业的外设行业分析报告平台，提供市场趋势、产品评测和数据洞察。
+baseurl: ""
+url: "https://lhd-0218.github.io/peripherals-industry-report"
+twitter_username: peripherals_report
+github_username: LHD-0218
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Permalink structure
+permalink: /:categories/:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Custom collections
+collections:
+  reports:
+    output: true
+    permalink: /reports/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: 外设行业分析师
+  - scope:
+      path: ""
+      type: "reports"
+    values:
+      layout: report
