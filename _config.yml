@@ -15,9 +15,14 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate
 
 # Permalink structure
 permalink: /:categories/:year/:month/:day/:title/
+
+# Pagination
+paginate: 10
+paginate_path: "/reports/page:num/"
 
 # Exclude from processing
 exclude:
@@ -29,13 +34,13 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
-# Custom collections
+# Collections
 collections:
   reports:
     output: true
     permalink: /reports/:path/
 
-# Default front matter
+# Categories for reports
 defaults:
   - scope:
       path: ""
@@ -48,3 +53,28 @@ defaults:
       type: "reports"
     values:
       layout: report
+
+# Custom variables
+report_types:
+  - name: 日报
+    slug: daily
+    color: "#4361ee"
+  - name: 周报  
+    slug: weekly
+    color: "#f72585"
+  - name: 月报
+    slug: monthly
+    color: "#7209b7"
+  - name: 总结报告
+    slug: summary
+    color: "#06d6a0"
+
+# SEO settings
+seo:
+  type: "WebSite"
+  name: "外设行业报告"
+  description: "专业的外设行业分析报告平台"
+  author: "外设行业分析师"
+  social:
+    links:
+      - "https://github.com/LHD-0218"

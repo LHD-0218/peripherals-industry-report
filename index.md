@@ -1,37 +1,175 @@
 ---
-layout: home
+layout: default
 title: 外设行业报告 - 专业洞察，数据驱动
 ---
 
-# 外设行业报告
-
-欢迎来到专业的外设行业分析平台。我们致力于提供最准确、最深入的外设市场洞察。
-
-## 最新报告
-
-{% for post in site.posts limit:5 %}
-- [{{ post.title }}]({{ post.url | relative_url }}) - {{ post.date | date: "%Y年%m月%d日" }}
-{% endfor %}
-
-## 报告分类
-
-<div class="row">
-  <div class="col-md-4">
-    <h3>市场分析</h3>
-    <p>各细分市场的深度分析，包括键盘、鼠标、显示器、音频设备等。</p>
-  </div>
-  <div class="col-md-4">
-    <h3>产品评测</h3>
-    <p>专业的产品评测和横向对比，帮助消费者做出明智选择。</p>
-  </div>
-  <div class="col-md-4">
-    <h3>趋势预测</h3>
-    <p>基于数据分析的行业趋势预测和技术创新展望。</p>
-  </div>
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">外设行业报告</h1>
+        <p class="lead">专业的外设市场分析平台，提供日报、周报、月报和深度总结</p>
+        <a href="/reports/daily/" class="btn btn-light btn-lg mt-3">查看最新日报</a>
+    </div>
 </div>
 
-## 数据驱动
+<div class="container py-5">
+    <!-- Report Types Navigation -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <ul class="nav nav-pills justify-content-center report-type-nav" id="reportTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab">日报</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="weekly-tab" data-bs-toggle="tab" data-bs-target="#weekly" type="button" role="tab">周报</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab">月报</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab">总结</button>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-我们的所有报告都基于真实市场数据和专业分析方法，确保内容的准确性和可靠性。
+    <!-- Report Content Tabs -->
+    <div class="tab-content" id="reportTabContent">
+        <!-- Daily Reports -->
+        <div class="tab-pane fade show active" id="daily" role="tabpanel">
+            <div class="row g-4">
+                {% assign daily_reports = site.posts | where: "categories", "日报" | reverse %}
+                {% for post in daily_reports limit:3 %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card report-card h-100">
+                        <div class="card-body">
+                            <span class="category-badge mb-2">日报</span>
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
+                            <p class="card-text">{{ post.excerpt | truncate: 80 }}</p>
+                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if daily_reports.size > 3 %}
+                <div class="col-12 text-center">
+                    <a href="/reports/daily/" class="btn btn-primary">查看更多日报</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
-[查看所有报告](/reports/)
+        <!-- Weekly Reports -->
+        <div class="tab-pane fade" id="weekly" role="tabpanel">
+            <div class="row g-4">
+                {% assign weekly_reports = site.posts | where: "categories", "周报" | reverse %}
+                {% for post in weekly_reports limit:3 %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card report-card h-100">
+                        <div class="card-body">
+                            <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #f72585);">周报</span>
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
+                            <p class="card-text">{{ post.excerpt | truncate: 80 }}</p>
+                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if weekly_reports.size > 3 %}
+                <div class="col-12 text-center">
+                    <a href="/reports/weekly/" class="btn btn-primary">查看更多周报</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Monthly Reports -->
+        <div class="tab-pane fade" id="monthly" role="tabpanel">
+            <div class="row g-4">
+                {% assign monthly_reports = site.posts | where: "categories", "月报" | reverse %}
+                {% for post in monthly_reports limit:3 %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card report-card h-100">
+                        <div class="card-body">
+                            <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #7209b7);">月报</span>
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
+                            <p class="card-text">{{ post.excerpt | truncate: 80 }}</p>
+                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if monthly_reports.size > 3 %}
+                <div class="col-12 text-center">
+                    <a href="/reports/monthly/" class="btn btn-primary">查看更多月报</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Summary Reports -->
+        <div class="tab-pane fade" id="summary" role="tabpanel">
+            <div class="row g-4">
+                {% assign summary_reports = site.posts | where: "categories", "总结" | reverse %}
+                {% for post in summary_reports limit:3 %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card report-card h-100">
+                        <div class="card-body">
+                            <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #06d6a0);">总结报告</span>
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
+                            <p class="card-text">{{ post.excerpt | truncate: 80 }}</p>
+                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if summary_reports.size > 3 %}
+                <div class="col-12 text-center">
+                    <a href="/reports/summary/" class="btn btn-primary">查看更多总结</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">行业数据概览</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-keyboard fa-2x text-primary mb-3"></i>
+                        <h3>¥586</h3>
+                        <p class="text-muted">机械键盘均价</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-mouse fa-2x text-primary mb-3"></i>
+                        <h3>63%</h3>
+                        <p class="text-muted">无线鼠标占比</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-tv fa-2x text-primary mb-3"></i>
+                        <h3>240Hz</h3>
+                        <p class="text-muted">最高刷新率</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card text-center">
+                        <i class="fas fa-chart-bar fa-2x text-primary mb-3"></i>
+                        <h3>15.3%</h3>
+                        <p class="text-muted">市场增长率</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
