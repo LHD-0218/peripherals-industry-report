@@ -11,7 +11,7 @@ permalink: /reports/weekly/
             <p class="text-center text-muted mb-5">每周汇总的外设市场趋势、重要事件和深度分析</p>
             
             <div class="row g-4">
-                {% assign weekly_reports = site.posts | where: "categories", "weekly" %}
+                {% assign weekly_reports = site.posts | where_exp: "post", "post.tags contains '周报'" %}
                 {% for post in weekly_reports reversed %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">

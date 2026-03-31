@@ -17,8 +17,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
-# Permalink structure
-permalink: /:categories/:year/:month/:day/:title/
+# Permalink structure - 使用固定结构避免中文问题
+permalink: /reports/:year/:month/:day/:title/
 
 # Pagination
 paginate: 10

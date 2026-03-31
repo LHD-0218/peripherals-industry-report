@@ -11,7 +11,7 @@ permalink: /reports/summary/
             <p class="text-center text-muted mb-5">季度、年度或专题性的综合分析报告</p>
             
             <div class="row g-4">
-                {% assign summary_reports = site.posts | where: "categories", "summary" %}
+                {% assign summary_reports = site.posts | where_exp: "post", "post.tags contains '总结'" %}
                 {% for post in summary_reports reversed %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">

@@ -5,13 +5,13 @@ permalink: /reports/monthly/
 ---
 
 <div class="container py-5">
-    <div class "row">
+    <div class="row">
         <div class="col-12">
             <h1 class="text-center mb-4">外设行业月报</h1>
             <p class="text-center text-muted mb-5">每月深度分析外设市场数据、趋势预测和战略洞察</p>
             
             <div class="row g-4">
-                {% assign monthly_reports = site.posts | where: "categories", "monthly" %}
+                {% assign monthly_reports = site.posts | where_exp: "post", "post.tags contains '月报'" %}
                 {% for post in monthly_reports reversed %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">
