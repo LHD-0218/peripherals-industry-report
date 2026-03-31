@@ -52,7 +52,7 @@ permalink: /brands/
                             </div>
                         </div>
                         
-                        <a href="/brands/{{ brand.id }}/" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ '/brands/' | append: brand.id | append: '/' | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 {% endfor %}

@@ -3,10 +3,8 @@ title: 鼠标与键盘市场情报平台
 email: contact@peripherals-report.com
 description: >-
   每日追踪鼠标与键盘新品、价格、品牌动向与渠道趋势的市场情报平台
-baseurl: ""
-url: "https://lhd-0218.github.io/peripherals-industry-report"
-twitter_username: peripherals_report
-github_username: LHD-0218
+baseurl: "/peripherals-industry-report"
+url: "https://lhd-0218.github.io"
 
 # Build settings
 markdown: kramdown
@@ -17,7 +15,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
-# Permalink structure - Simplified
+# Permalink structure
 permalink: /reports/:categories/:year/:month/:day/:title/
 
 # Pagination
@@ -34,9 +32,6 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - scripts/
-
-# Remove collections to avoid conflicts
-# Collections are not needed for simple blog posts
 
 # Directories
 source: .
