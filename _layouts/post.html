@@ -8,64 +8,64 @@ layout: default
             <!-- Breadcrumb Navigation -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">首页</a></li>
+                    <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}" style="color: var(--primary);">首页</a></li>
                     {% if page.tags contains "日报" %}
-                    <li class="breadcrumb-item"><a href="/reports/daily/">日报</a></li>
+                    <li class="breadcrumb-item"><a href="/reports/daily/" style="color: var(--primary);">日报</a></li>
                     {% elsif page.tags contains "周报" %}
-                    <li class="breadcrumb-item"><a href="/reports/weekly/">周报</a></li>
+                    <li class="breadcrumb-item"><a href="/reports/weekly/" style="color: var(--primary);">周报</a></li>
                     {% elsif page.tags contains "月报" %}
-                    <li class="breadcrumb-item"><a href="/reports/monthly/">月报</a></li>
+                    <li class="breadcrumb-item"><a href="/reports/monthly/" style="color: var(--primary);">月报</a></li>
                     {% elsif page.tags contains "总结" %}
-                    <li class="breadcrumb-item"><a href="/reports/summary/">总结报告</a></li>
+                    <li class="breadcrumb-item"><a href="/reports/summary/" style="color: var(--primary);">总结报告</a></li>
                     {% endif %}
                     <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
                 </ol>
             </nav>
 
             <!-- Post Content -->
-            <article class="card p-4 shadow-sm">
+            <article class="report-card" style="border-radius: 16px; margin-bottom: 2rem;">
                 <header class="mb-4">
-                    <h1 class="display-5">{{ page.title }}</h1>
-                    <div class="text-muted mb-3">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary);">{{ page.title }}</h1>
+                        {% if page.tags contains "日报" %}
+                        <span class="report-type">日报</span>
+                        {% elsif page.tags contains "周报" %}
+                        <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #f72585);">周报</span>
+                        {% elsif page.tags contains "月报" %}
+                        <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #7209b7);">月报</span>
+                        {% elsif page.tags contains "总结" %}
+                        <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #06d6a0);">总结</span>
+                        {% endif %}
+                    </div>
+                    <div class="text-muted mb-3" style="color: var(--text-secondary);">
                         <i class="fas fa-calendar me-2"></i>{{ page.date | date: "%Y年%m月%d日" }}
                         {% if page.author %} • <i class="fas fa-user me-2"></i>{{ page.author }}{% endif %}
                     </div>
-                    
-                    <!-- Category Badge -->
-                    {% if page.tags contains "日报" %}
-                    <span class="category-badge">日报</span>
-                    {% elsif page.tags contains "周报" %}
-                    <span class="category-badge" style="background: linear-gradient(135deg, #4361ee, #f72585);">周报</span>
-                    {% elsif page.tags contains "月报" %}
-                    <span class="category-badge" style="background: linear-gradient(135deg, #4361ee, #7209b7);">月报</span>
-                    {% elsif page.tags contains "总结" %}
-                    <span class="category-badge" style="background: linear-gradient(135deg, #4361ee, #06d6a0);">总结报告</span>
-                    {% endif %}
                 </header>
 
-                <div class="post-content">
+                <div class="post-content" style="line-height: 1.8; color: var(--text-secondary);">
                     {{ content }}
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="mt-4 pt-4 border-top">
-                    <a href="{{ '/' | relative_url }}" class="btn btn-outline-primary">
+                <div class="mt-4 pt-4 border-top" style="border-color: var(--border-color);">
+                    <a href="{{ '/' | relative_url }}" class="read-more">
                         <i class="fas fa-home me-2"></i>返回首页
                     </a>
                     {% if page.tags contains "日报" %}
-                    <a href="/reports/daily/" class="btn btn-outline-secondary">
+                    <a href="/reports/daily/" class="read-more ms-3">
                         <i class="fas fa-list me-2"></i>查看所有日报
                     </a>
                     {% elsif page.tags contains "周报" %}
-                    <a href="/reports/weekly/" class="btn btn-outline-secondary">
+                    <a href="/reports/weekly/" class="read-more ms-3">
                         <i class="fas fa-list me-2"></i>查看所有周报
                     </a>
                     {% elsif page.tags contains "月报" %}
-                    <a href="/reports/monthly/" class="btn btn-outline-secondary">
+                    <a href="/reports/monthly/" class="read-more ms-3">
                         <i class="fas fa-list me-2"></i>查看所有月报
                     </a>
                     {% elsif page.tags contains "总结" %}
-                    <a href="/reports/summary/" class="btn btn-outline-secondary">
+                    <a href="/reports/summary/" class="read-more ms-3">
                         <i class="fas fa-list me-2"></i>查看所有总结
                     </a>
                     {% endif %}
@@ -74,27 +74,28 @@ layout: default
 
             <!-- Related Posts -->
             <div class="mt-5">
-                <h3 class="mb-4">相关报告</h3>
+                <h3 style="font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">相关报告</h3>
                 <div class="row g-4">
                     {% assign related_posts = site.posts | where_exp: "post", "post.tags contains page.tags.first" | reverse %}
                     {% for post in related_posts limit:3 %}
                     {% if post.url != page.url %}
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card report-card h-100">
-                            <div class="card-body">
+                    <div class="col-md-6">
+                        <div class="report-card">
+                            <div class="report-header">
                                 {% if post.tags contains "日报" %}
-                                <span class="category-badge mb-2">日报</span>
+                                <span class="report-type">日报</span>
                                 {% elsif post.tags contains "周报" %}
-                                <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #f72585);">周报</span>
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #f72585);">周报</span>
                                 {% elsif post.tags contains "月报" %}
-                                <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #7209b7);">月报</span>
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #7209b7);">月报</span>
                                 {% elsif post.tags contains "总结" %}
-                                <span class="category-badge mb-2" style="background: linear-gradient(135deg, #4361ee, #06d6a0);">总结报告</span>
+                                <span class="report-type" style="background: linear-gradient(135deg, var(--primary), #06d6a0);">总结</span>
                                 {% endif %}
-                                <h5 class="card-title">{{ post.title }}</h5>
-                                <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
-                                <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                                <span class="report-date">{{ post.date | date: "%Y/%m/%d" }}</span>
                             </div>
+                            <h4 class="report-title">{{ post.title | truncate: 30 }}</h4>
+                            <p class="report-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     {% endif %}

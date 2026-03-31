@@ -58,7 +58,7 @@ defaults:
 report_types:
   - name: 日报
     slug: daily
-    color: "#4361ee"
+    color: "#6366f1"
   - name: 周报  
     slug: weekly
     color: "#f72585"

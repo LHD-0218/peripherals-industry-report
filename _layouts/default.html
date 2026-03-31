@@ -6,6 +6,8 @@
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}">
     
+    <!-- Google Fonts - Inter for professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -13,118 +15,605 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --accent-color: #4cc9f0;
-            --light-bg: #f8f9fa;
-            --dark-text: #212529;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --bg-surface: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.8);
+            --bg-hover: rgba(51, 65, 85, 0.6);
+            --border-color: rgba(148, 163, 184, 0.2);
+            --glow-primary: 0 0 20px rgba(99, 102, 241, 0.3);
+            --glow-accent: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fafafa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
         }
         
         .navbar-brand {
             font-weight: 700;
-            color: var(--primary-color) !important;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 4rem 0;
-            margin-bottom: 2rem;
-        }
-        
-        .report-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            border: 1px solid #e9ecef;
-        }
-        
-        .report-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .category-badge {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .stats-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            position: relative;
             transition: all 0.3s ease;
         }
         
-        .stats-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        .nav-link:hover {
+            color: var(--text-primary) !important;
         }
         
-        .footer {
-            background: var(--secondary-color);
-            color: white;
-            padding: 2rem 0;
-            margin-top: 3rem;
+        .nav-link.active {
+            color: var(--primary) !important;
         }
         
-        /* Intelligence Dashboard Styles */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 6rem 0 4rem;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary), 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid var(--text-secondary);
+            color: var(--text-secondary);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Intelligence Panel */
         .intelligence-panel {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--glow-primary);
+            height: 100%;
+        }
+        
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .metric-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .metric-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .trend-chart {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* KPI Cards */
+        .kpi-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         .kpi-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
-            padding: 1.5rem;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            height: 100%;
         }
         
         .kpi-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: var(--glow-primary);
         }
         
-        .market-segment-card {
-            border-left: 4px solid var(--primary-color);
+        .kpi-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .kpi-label {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .kpi-badge.info {
+            background: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+        }
+        
+        .kpi-keywords {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .keyword-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+        
+        /* Report Tabs */
+        .report-tabs {
+            background: var(--bg-surface);
+            padding: 4rem 0;
+        }
+        
+        .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tabs .nav-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 0.75rem 2rem;
+            margin: 0 0.5rem;
+            color: var(--text-secondary) !important;
+            font-weight: 600;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white !important;
+            border-color: var(--primary);
+        }
+        
+        .tab-content {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 0 0 16px 16px;
+            padding: 2rem;
+        }
+        
+        /* Report Cards */
+        .report-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        
+        .report-type {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .report-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .report-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .report-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: all 0.3s ease;
         }
         
-        .market-segment-card:hover {
-            border-left-color: var(--accent-color);
-            transform: translateX(5px);
+        .read-more:hover {
+            color: var(--secondary);
+            transform: translateX(3px);
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 2rem 0;
+        /* Market Intelligence Grid */
+        .market-grid {
+            padding: 4rem 0;
+        }
+        
+        .market-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .market-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .market-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .market-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .market-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .market-list {
+            list-style: none;
+        }
+        
+        .market-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .market-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .market-list li::before {
+            content: "•";
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        /* Trust & Methodology */
+        .trust-section {
+            background: var(--bg-surface);
+            padding: 4rem 0;
+        }
+        
+        .trust-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .trust-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .trust-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .trust-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .trust-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
             
-            .btn-lg {
+            .hero-content p {
+                font-size: 1.125rem;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-container .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 0 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .kpi-value {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+            
+            .nav-tabs .nav-link {
                 padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+                font-size: 0.875rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{{ '/' | relative_url }}">鼠标与键盘市场情报平台</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -139,15 +628,21 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             报告中心
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/reports/daily/">日报</a></li>
-                            <li><a class="dropdown-item" href="/reports/weekly/">周报</a></li>
-                            <li><a class="dropdown-item" href="/reports/monthly/">月报</a></li>
-                            <li><a class="dropdown-item" href="/reports/summary/">总结报告</a></li>
+                        <ul class="dropdown-menu bg-dark border-0">
+                            <li><a class="dropdown-item text-light" href="/reports/daily/">日报</a></li>
+                            <li><a class="dropdown-item text-light" href="/reports/weekly/">周报</a></li>
+                            <li><a class="dropdown-item text-light" href="/reports/monthly/">月报</a></li>
+                            <li><a class="dropdown-item text-light" href="/reports/summary/">总结报告</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about/">关于我们</a>
+                        <a class="nav-link" href="#">品牌追踪</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">价格趋势</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">关于</a>
                     </li>
                 </ul>
             </div>
@@ -161,27 +656,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>鼠标与键盘市场情报平台</h5>
-                    <p>专业的外设行业分析报告平台，提供市场趋势、产品评测和数据洞察。</p>
+                    <h3 class="footer-title">鼠标与键盘市场情报平台</h3>
+                    <p class="text-muted">专业的外设市场情报分析平台，提供实时数据洞察和深度研究报告。</p>
                 </div>
                 <div class="col-md-3">
-                    <h6>快速链接</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ '/' | relative_url }}" class="text-white">首页</a></li>
-                        <li><a href="/reports/daily/" class="text-white">日报</a></li>
-                        <li><a href="/reports/weekly/" class="text-white">周报</a></li>
-                        <li><a href="/reports/monthly/" class="text-white">月报</a></li>
-                    </ul>
+                    <h4 class="footer-title">快速链接</h4>
+                    <div class="footer-links">
+                        <a href="{{ '/' | relative_url }}">首页</a>
+                        <a href="/reports/daily/">日报</a>
+                        <a href="/reports/weekly/">周报</a>
+                        <a href="/reports/monthly/">月报</a>
+                        <a href="/reports/summary/">总结报告</a>
+                    </div>
                 </div>
                 <div class="col-md-3">
-                    <h6>联系我们</h6>
-                    <p><i class="fas fa-envelope"></i> contact@peripherals-report.com</p>
-                    <p><i class="fab fa-github"></i> GitHub: LHD-0218</p>
+                    <h4 class="footer-title">联系我们</h4>
+                    <div class="footer-links">
+                        <a href="mailto:contact@peripherals-report.com"><i class="fas fa-envelope me-2"></i>Email</a>
+                        <a href="https://github.com/LHD-0218" target="_blank"><i class="fab fa-github me-2"></i>GitHub</a>
+                    </div>
                 </div>
             </div>
-            <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.3);">
-            <div class="text-center">
-                <p>&copy; 2026 鼠标与键盘市场情报平台. 保留所有权利。</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 鼠标与键盘市场情报平台. 保留所有权利.</p>
             </div>
         </div>
     </footer>
