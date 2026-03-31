@@ -2,7 +2,7 @@
 layout: post
 title: "2026年3月30日外设行业日报"
 date: 2026-03-30 09:00:00 +0800
-categories: [daily]
+categories: []
 tags: [日报, 市场动态, 产品发布]
 author: 外设行业分析师
 ---
