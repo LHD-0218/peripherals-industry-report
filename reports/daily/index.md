@@ -20,7 +20,7 @@ permalink: /reports/daily/
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text text-muted small">{{ post.date | date: "%Y年%m月%d日" }}</p>
                             <p class="card-text">{{ post.excerpt | truncate: 100 }}</p>
-                            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
+                            <a href="{{ post.url }}" class="btn btn-outline-primary btn-sm">阅读详情</a>
                         </div>
                     </div>
                 </div>
