@@ -1,8 +1,8 @@
 # Jekyll Configuration
-title: 外设行业报告
+title: 鼠标与键盘市场情报平台
 email: contact@peripherals-report.com
 description: >-
-  专业的外设行业分析报告平台，提供市场趋势、产品评测和数据洞察。
+  每日追踪鼠标与键盘新品、价格、品牌动向与渠道趋势的市场情报平台
 baseurl: ""
 url: "https://lhd-0218.github.io/peripherals-industry-report"
 twitter_username: peripherals_report
@@ -47,7 +47,7 @@ defaults:
       type: "posts"
     values:
       layout: post
-      author: 外设行业分析师
+      author: 市场情报分析师
   - scope:
       path: ""
       type: "reports"
@@ -72,9 +72,9 @@ report_types:
 # SEO settings
 seo:
   type: "WebSite"
-  name: "外设行业报告"
-  description: "专业的外设行业分析报告平台"
-  author: "外设行业分析师"
+  name: "鼠标与键盘市场情报平台"
+  description: "每日追踪鼠标与键盘新品、价格、品牌动向与渠道趋势的市场情报平台"
+  author: "市场情报分析师"
   social:
     links:
       - "https://github.com/LHD-0218"
