@@ -48,7 +48,7 @@ destination: _site
 # Categories for reports
 defaults:
   - scope:
-      path: "content/reports"
+      path: ""
       type: "posts"
     values:
       layout: post
