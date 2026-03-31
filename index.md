@@ -167,7 +167,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                                 {% endfor %}
                                 <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
-                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ post.url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     {% endfor %}
@@ -193,7 +193,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                                 {% endfor %}
                                 <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
-                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ post.url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     {% endfor %}
@@ -219,7 +219,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                                 {% endfor %}
                                 <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
-                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ post.url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     {% endfor %}
@@ -245,7 +245,7 @@ title: 鼠标与键盘市场情报平台 - 每日追踪新品、价格、品牌�
                                 {% endfor %}
                                 <span class="importance-badge {% if post.importance == 'high' %}high{% elsif post.importance == 'critical' %}critical{% endif %}">重要性: {% if post.importance == 'high' %}高{% elsif post.importance == 'critical' %}极高{% else %}中{% endif %}</span>
                             </div>
-                            <a href="{{ post.url | relative_url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ post.url }}" class="read-more">查看详情 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     {% endfor %}

@@ -17,8 +17,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
 
-# Permalink structure
-permalink: /reports/:year/:month/:day/:title/
+# Permalink structure - Simplified
+permalink: /reports/:categories/:year/:month/:day/:title/
 
 # Pagination
 paginate: 10
@@ -35,11 +35,8 @@ exclude:
   - vendor/ruby/
   - scripts/
 
-# Collections
-collections:
-  reports:
-    output: true
-    permalink: /reports/:path/
+# Remove collections to avoid conflicts
+# Collections are not needed for simple blog posts
 
 # Directories
 source: .
@@ -53,11 +50,6 @@ defaults:
     values:
       layout: post
       author: 外设市场情报分析师
-  - scope:
-      path: ""
-      type: "reports"
-    values:
-      layout: report
 
 # Custom variables
 report_types:
