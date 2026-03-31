@@ -38,7 +38,7 @@ title: 外设行业报告 - 专业洞察，数据驱动
         <!-- Daily Reports -->
         <div class="tab-pane fade show active" id="daily" role="tabpanel">
             <div class="row g-4">
-                {% assign daily_reports = site.posts | where: "categories", "日报" | reverse %}
+                {% assign daily_reports = site.posts | where: "categories", "daily" | reverse %}
                 {% for post in daily_reports limit:3 %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">
@@ -63,7 +63,7 @@ title: 外设行业报告 - 专业洞察，数据驱动
         <!-- Weekly Reports -->
         <div class="tab-pane fade" id="weekly" role="tabpanel">
             <div class="row g-4">
-                {% assign weekly_reports = site.posts | where: "categories", "周报" | reverse %}
+                {% assign weekly_reports = site.posts | where: "categories", "weekly" | reverse %}
                 {% for post in weekly_reports limit:3 %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">
@@ -88,7 +88,7 @@ title: 外设行业报告 - 专业洞察，数据驱动
         <!-- Monthly Reports -->
         <div class="tab-pane fade" id="monthly" role="tabpanel">
             <div class="row g-4">
-                {% assign monthly_reports = site.posts | where: "categories", "月报" | reverse %}
+                {% assign monthly_reports = site.posts | where: "categories", "monthly" | reverse %}
                 {% for post in monthly_reports limit:3 %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">
@@ -113,7 +113,7 @@ title: 外设行业报告 - 专业洞察，数据驱动
         <!-- Summary Reports -->
         <div class="tab-pane fade" id="summary" role="tabpanel">
             <div class="row g-4">
-                {% assign summary_reports = site.posts | where: "categories", "总结" | reverse %}
+                {% assign summary_reports = site.posts | where: "categories", "summary" | reverse %}
                 {% for post in summary_reports limit:3 %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">

@@ -11,7 +11,7 @@ permalink: /reports/daily/
             <p class="text-center text-muted mb-5">每日更新的外设市场动态、产品发布和行业新闻</p>
             
             <div class="row g-4">
-                {% assign daily_reports = site.posts | where: "categories", "日报" %}
+                {% assign daily_reports = site.posts | where: "categories", "daily" %}
                 {% for post in daily_reports reversed %}
                 <div class="col-md-6 col-lg-4">
                     <div class="card report-card h-100">
