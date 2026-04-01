@@ -1,0 +1,92 @@
+{
+  "date": "2026-04-01",
+  "price_indices": {
+    "weekly": {
+      "index": 99.14,
+      "change": -0.86
+    },
+    "monthly": {
+      "index": 99.14,
+      "change": -0.86
+    }
+  },
+  "price_changes": [
+    {
+      "brand": "WOMIER",
+      "model": "SK75 TMR",
+      "layout": "75%",
+      "current_price": 499,
+      "yesterday_price": 519,
+      "seven_day_low": 499,
+      "change_percent": -3.85,
+      "channel": "jd",
+      "status": "降价",
+      "source_url": "https://item.jd.com/womier-sk75-tmr.html"
+    },
+    {
+      "brand": "Keychron",
+      "model": "K2 HE",
+      "layout": "75%",
+      "current_price": 649,
+      "yesterday_price": 659,
+      "seven_day_low": 649,
+      "change_percent": -1.52,
+      "channel": "jd",
+      "status": "降价",
+      "source_url": "https://item.jd.com/keychron-k2-he.html"
+    },
+    {
+      "brand": "Keychron",
+      "model": "Q1 HE",
+      "layout": "65%",
+      "current_price": 849,
+      "yesterday_price": 859,
+      "seven_day_low": 849,
+      "change_percent": -1.16,
+      "channel": "jd",
+      "status": "降价",
+      "source_url": "https://item.jd.com/keychron-q1-he.html"
+    },
+    {
+      "brand": "Keychron",
+      "model": "Q1 HE",
+      "layout": "65%",
+      "current_price": 869,
+      "yesterday_price": 879,
+      "seven_day_low": 869,
+      "change_percent": -1.14,
+      "channel": "taobao",
+      "status": "缺货",
+      "source_url": "https://item.taobao.com/keychron-q1-he.html"
+    }
+  ],
+  "new_launches": [
+    {
+      "date": "2026-04-01",
+      "brand": "Keychron",
+      "model": "Q8 HE",
+      "layout": "98%",
+      "layout_category": "98/100",
+      "tier": "800-1299",
+      "channel": "news",
+      "price_current": null,
+      "price_list": 999,
+      "in_stock": true,
+      "is_presale": false,
+      "is_new_launch": true,
+      "source_url": "https://www.chiphell.com/thread-keychron-q8-he-launch.html"
+    }
+  ],
+  "tier_distribution": {
+    "300-499": 25.0,
+    "500-799": 25.0,
+    "800-1299": 50.0,
+    "1300+": 0.0
+  },
+  "data_sources": {
+    "official": 4,
+    "ecommerce": 4,
+    "news": 1
+  },
+  "last_updated": "2026-04-01T11:46:35.196550"
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键鼠市场情报详情 - 外设行业动态报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tabs a {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs a:hover,
+        .nav-tabs a.active {
+            border-bottom-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .report-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .report-section h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .report-content {
+            white-space: pre-wrap;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .report-content h1,
+        .report-content h2,
+        .report-content h3 {
+            color: #667eea;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        .report-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .report-content ul,
+        .report-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .report-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .date-selector {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .date-selector select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            background: white;
+            color: #333;
+        }
+        
+        .update-info {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>键鼠市场情报详情</h1>
+            <p>鼠标 · 键盘 · 完整日报内容</p>
+        </div>
+    </header>
+    
+    <div class="nav-tabs">
+        <a href="index.html">日报概览</a>
+        <a href="weekly.html">周报</a>
+        <a href="trends.html">趋势分析</a>
+        <a href="brands.html">品牌监控</a>
+    </div>
+    
+    <div class="container">
+        <div class="date-selector">
+            <label for="report-date">选择日期: </label>
+            <select id="report-date">
+                <!-- 日期选项将通过脚本动态加载 -->
+                <option value="">加载中...</option>
+            </select>
+        </div>
+        
+        <div class="report-section">
+            <div class="report-content" id="report-content">
+                <p>正在加载日报内容...</p>
+            </div>
+        </div>
+        
+        <div class="update-info">
+            <p>数据来源: 官方网站、电商平台、社区讨论</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 外设行业动态报告 | 由AI驱动的专业市场洞察</p>
+        </div>
+    </footer>
+
+    <script>
+        // 详情页日报加载器
+        class KBIntelDetailsLoader {
+            constructor() {
+                this.availableDates = [];
+            }
+            
+            // 获取所有可用的日报文件
+            async getAvailableReports() {
+                try {
+                    // 在实际部署中，这应该通过API获取，这里我们硬编码已知的日期
+                    this.availableDates = [
+                        '2026-04-01',
+                        '2026-03-31', 
+                        '2026-03-30'
+                    ];
+                    
+                    const select = document.getElementById('report-date');
+                    select.innerHTML = '';
+                    this.availableDates.forEach(date => {
+                        const option = document.createElement('option');
+                        option.value = date;
+                        option.textContent = date;
+                        select.appendChild(option);
+                    });
+                    
+                    // 默认加载最新日期
+                    if (this.availableDates.length > 0) {
+                        select.value = this.availableDates[0];
+                        this.loadReport(this.availableDates[0]);
+                    }
+                } catch (error) {
+                    console.error('获取可用日报列表失败:', error);
+                }
+            }
+            
+            // 加载指定日期的日报内容
+            async loadReport(date) {
+                try {
+                    const response = await fetch(`reports/${date}.md`);
+                    if (!response.ok) {
+                        throw new Error(`无法加载日报文件: ${date}.md`);
+                    }
+                    const markdownContent = await response.text();
+                    
+                    // 简单的Markdown到HTML转换（实际项目中应使用proper的Markdown解析器）
+                    const htmlContent = this.markdownToHtml(markdownContent);
+                    document.getElementById('report-content').innerHTML = htmlContent;
+                } catch (error) {
+                    console.error('加载日报内容失败:', error);
+                    document.getElementById('report-content').innerHTML = 
+                        `<p style="color: red;">加载日报内容失败: ${error.message}</p>`;
+                }
+            }
+            
+            // 简单的Markdown转HTML（仅处理基本格式）
+            markdownToHtml(markdown) {
+                let html = markdown;
+                
+                // 标题
+                html = html.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+                html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+                html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+                
+                // 强调
+                html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+                // 列表
+                html = html.replace(/^\s*-\s(.*)$/gm, '<li>$1</li>');
+                html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+                
+                // 段落
+                html = html.replace(/^(?!<[h|u|l])/gm, '<p>') // 开头不是标题或列表的行
+                           .replace(/<\/p><p>/g, '</p>\n<p>') // 避免连续段落标签
+                           .replace(/(<\/h[1-3]>)(?!\n<p>)/g, '$1\n<p>') // 标题后添加段落
+                           .replace(/(<\/ul>)(?!\n<p>)/g, '$1\n<p>'); // 列表后添加段落
+                
+                // 清理多余的段落标签
+                html = html.replace(/<p>\s*<\/p>/g, '');
+                html = html.replace(/<p>(<\/?[h|u|l])/g, '$1');
+                
+                return html;
+            }
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = new KBIntelDetailsLoader();
+            loader.getAvailableReports();
+            
+            // 绑定日期选择事件
+            document.getElementById('report-date').addEventListener('change', function(e) {
+                if (e.target.value) {
+                    loader.loadReport(e.target.value);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

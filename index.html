@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外设行业动态报告 - 每日更新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tabs a {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs a:hover,
+        .nav-tabs a.active {
+            border-bottom-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .report-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .report-section h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .findings-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .findings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .finding-card {
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            background: #f8f9ff;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .finding-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+        }
+        
+        .recommendations-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendations-list li strong {
+            color: #764ba2;
+        }
+        
+        .update-info {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+    <script src="kb_intel_data_loader.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>外设行业动态报告</h1>
+            <p>鼠标 · 键盘 · 行业趋势 · 市场分析</p>
+        </div>
+    </header>
+    
+    <div class="nav-tabs">
+        <a href="index.html" class="active">日报概览</a>
+        <a href="details.html">日报详情</a>
+        <a href="weekly.html">周报</a>
+        <a href="trends.html">趋势分析</a>
+        <a href="brands.html">品牌监控</a>
+    </div>
+    
+    <div class="container">
+        <div class="report-section">
+            <h2>今日行业动态</h2>
+            <div class="findings-grid">
+                <!-- 动态内容将通过脚本动态加载 -->
+                <div class="finding-card">
+                    <h3>数据加载中...</h3>
+                    <p>请稍候，正在获取最新外设行业动态数据。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="report-section">
+            <h2>营销建议</h2>
+            <ul class="recommendations-list">
+                <li>数据加载中，请稍候...</li>
+            </ul>
+        </div>
+        
+        <div class="update-info">
+            <p>最后更新时间: 正在获取...</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 外设行业动态报告 | 由AI驱动的专业市场洞察</p>
+        </div>
+    </footer>
+</body>
+</html>
